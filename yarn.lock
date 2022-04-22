@@ -88,6 +88,25 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@tosspayments/brandpay-sdk@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@tosspayments/brandpay-sdk/-/brandpay-sdk-1.0.5.tgz#9ebca909b95032170235a742348b2f17b1eda376"
+  integrity sha512-9Kv8KMwDpD4b9fSas+Lajo6AMZf9y3pSSEvMC7vB7iDo/2hcUZNE+1594OFQlNLRGmsXvQ6yhwgl9uFrlfP9Sg==
+  dependencies:
+    "@tosspayments/brandpay__types" "^1.4.7"
+
+"@tosspayments/brandpay-types@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@tosspayments/brandpay-types/-/brandpay-types-0.2.1.tgz#64a40dba881296f61f87f7518a722ff7007b8dce"
+  integrity sha512-w8RbmYV9sT092kI6STjyao0d0B4YDDZ622/NmTXmzmrAeFPoh6k/XaHzEEnvE3nZlPR/Sgzl/gojihMwkP/hCA==
+
+"@tosspayments/brandpay__types@^1.4.7":
+  version "1.5.7"
+  resolved "https://registry.yarnpkg.com/@tosspayments/brandpay__types/-/brandpay__types-1.5.7.tgz#782c3f76d2d8e2b09fa12ec9321c29d7f8430f85"
+  integrity sha512-mcXAc3hL7OrTVi4vfhA4axXYwGpnv35tV/ZkoViDdbjQTymDueSUiTW6rycFDzjHsF/3TQMr9LAJHj/C+Gi6Jw==
+  dependencies:
+    "@tosspayments/brandpay-types" "^0.2.1"
+
 "@types/node@17.0.4":
   version "17.0.4"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.4.tgz#fec0ce0526abb6062fd206d72a642811b887a111"
