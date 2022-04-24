@@ -7,12 +7,19 @@ import { Methods } from "@tosspayments/brandpay-types"
 import PayItem from '@components/PayItems'
 import { loadBrandPay } from '@tosspayments/brandpay-sdk';
 import { useRouter } from 'next/router'
+import { User } from '@types'
 
 interface PaylistProps {
-  cardlist: Methods
+  cardlist: Methods,
+  user: User
 }
 
-const Paylist: NextPage<PaylistProps> = ({cardlist}) => {
+const Paylist: NextPage<PaylistProps> = ({cardlist, user}) => {
+  useEffect(() => {
+    if(cardlist.accounts.length === 0 && cardlist.accounts.length === 0) {
+      haldleAddPayments()
+    }
+  }, [])
   const router = useRouter()
 
   const refreshServerSide = () => {
@@ -20,7 +27,7 @@ const Paylist: NextPage<PaylistProps> = ({cardlist}) => {
   }
   
   const haldleAddPayments = async() => {
-    const barndpay = await loadBrandPay(config.PAYMENTS_CLIENTL_KEY, '406815674539835402', {
+    const barndpay = await loadBrandPay(config.PAYMENTS_CLIENTL_KEY, user.id, {
       redirectUrl: config.PAYMENTS_BASE_API_URL + '/auth',
       ui: {
         highlightColor: "#7C3AED",
@@ -30,10 +37,11 @@ const Paylist: NextPage<PaylistProps> = ({cardlist}) => {
         }
       }
     })
-    barndpay.requestAgreement('빌링').then((data) => {
-      console.log(data)
+    barndpay.addPaymentMethod().then((data) => {
+      refreshServerSide()
     })
   }
+
   return (
     <>
       <h1 className='text-2xl font-bold'>등록된 결제수단</h1>
@@ -42,9 +50,6 @@ const Paylist: NextPage<PaylistProps> = ({cardlist}) => {
       </div>
       <button className='border px-2 py-1 rounded-md min-w-[15vw] mt-2 hover:bg-gray-200' onClick={() => (haldleAddPayments())} >
         결제수단 추가
-      </button>
-      <button className='border px-2 py-1 rounded-md min-w-[10vw] mt-2 ml-2 hover:bg-gray-200' onClick={() => (haldleAddPayments())} >
-        결제수단 관리
       </button>
     </>
   )
@@ -57,16 +62,24 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             "authorization": "Bearer " + context.req.cookies['auth'],
         }
     })
-  if(cardlist.ok) {
+  let auth = await fetch(
+      `${config.BASE_API_URL}/users/@me`, {
+          headers: {
+            Cookie: `auth=${context.req.cookies.auth}`,
+          }
+      })
+  if(cardlist.ok && auth.ok) {
     return {
       props: {
-          cardlist: (await cardlist.json()).data
+          cardlist: (await cardlist.json()).data,
+          user: (await auth.json()).data,
       }
     }
   } else {
     return {
       props: {
-        cardlist: null
+        cardlist: null,
+        user: null
       },
     }; 
   }

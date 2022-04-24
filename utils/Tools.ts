@@ -21,15 +21,16 @@ export const guildProfileLink = (guild: DiscordUserGuild): string => {
     return `${EndPoints.Discord.CDN}/icons/${guild.id}/${guild.icon}`
 }
 
+export const UrlCheck = (url: string): boolean => {
+    const expUrl = /(((http(s)?:\/\/)\S+(\.[^(\n|\t|\s,)]+)+)|((http(s)?:\/\/)?(([a-zA-z\-_]+[0-9]*)|([0-9]*[a-zA-z\-_]+)){2,}(\.[^(\n|\t|\s,)]+)+))+/gi;
+    return expUrl.test(url)
+}
+
 
 function checkFlag(base: number, required: number) {
 	return (base & required) === required
 }
 
 export function checkUserFlag(base: number, required: number | keyof typeof UserFlags):boolean {
-    console.log(base)
-    console.log(UserFlags.guildowner)
-    console.log(required)
-    console.log(checkFlag(base, typeof required === 'number' ? required : UserFlags[required]))
 	return checkFlag(base, typeof required === 'number' ? required : UserFlags[required])
 }

@@ -1,0 +1,276 @@
+.first {
+    min-height: 80vh;
+    background: rgb(0, 0, 0);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+    font-family: Noto Sans KR;
+}
+
+.title {
+    width: 100%;
+    font-size: 1.4em;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    z-index: 90;
+}
+
+.subtitle {
+    width: 100%;
+    font-size: 2.8em;
+    font-weight: bold;
+    display: flex;
+    margin-top: 15px;
+    justify-content: center;
+    z-index: 90;
+}
+
+.description {
+    width: 100%;
+    font-size: .9em;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    z-index: 90;
+}
+
+.mainback {
+    position: absolute;
+    top: 24.1vh;
+    left: 15vw;
+    width: 400px;
+    height: 400px;
+    z-index: 1;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.second {
+    padding-top: 15vh;
+    padding-bottom: 15vh;
+    background: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-direction: row;
+    font-family: Noto Sans KR;
+    flex-wrap: wrap;
+    min-height: 65vh;
+}
+
+.secondCardImg1 {
+    display: flex;
+    background-image: url('/verifytype.png');
+    background-position: center;
+    background-size: 230px;
+    background-repeat: no-repeat;
+    width: 255px;
+    height: 255px;
+    overflow: hidden;
+    border-radius: 100%;
+    border: 2px solid;
+    border-color: rgb(165, 165, 165);
+}
+
+.secondCardImg2 {
+    display: flex;
+    background-image: url('/userjoindate.png');
+    background-position: center;
+    background-size: 270px;
+    background-repeat: no-repeat;
+    width: 255px;
+    height: 255px;
+    overflow: hidden;
+    border-radius: 100%;
+    border: 2px solid;
+    border-color: rgb(165, 165, 165);
+}
+
+.secondCardImg3 {
+    display: flex;
+    background-image: url('/invite.png');
+    background-position: center;
+    background-size: 580px;
+    background-repeat: no-repeat;
+    width: 255px;
+    height: 255px;
+    overflow: hidden;
+    border-radius: 100%;
+    border: 2px solid;
+    border-color: rgb(165, 165, 165);
+}
+
+.secondCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Noto Sans KR;
+    font-size: .9em;
+    font-weight: bold;
+    margin: 70px;
+}
+
+.secondCardTitle {
+    margin-top: 15px;
+    font-size: 2em;
+}
+
+.secondCardDescription {
+    margin-top: 1px;
+    font-size: 1.1em;
+}
+
+.third {
+    background-image: url('/premium_background.png');
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position:center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    backdrop-filter: blur(100px);
+}
+
+.thirdDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 60vh;
+    font-family: Noto Sans KR;
+    color: white;
+}
+
+.thirdTitle {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.thirdDescription {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.fourth {
+    min-height: 65vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: white;
+    flex-wrap: wrap;
+}
+
+.buy {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    height: 90px;
+    background-color: white;
+    border: 1px solid rgb(17 24 39 / 0.1);
+    width: 100vw;
+}
+
+.buyDiv2 {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    margin-left: 30px;
+    margin-right: 30px;
+    width: 30vw;
+    margin-left: auto;
+}
+
+.buyDiv {
+    width: 70vw;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.buyButton {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    margin-left: 8px;
+    border-radius: 4px;
+    background-color: #000000;
+    font-size: 16px;
+    font-family: Noto Sans KR;
+    line-height: 25px;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.fourthCard {
+    width: min(400px, 100%);
+    min-height: 430px;
+    padding: 24px;
+    background: none;
+    color: black;
+    font-family: Noto Sans KR;
+    font-weight: bold;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    border: #e5e7eb 2px solid;
+}
+.fourthCardTitle {
+    font-size: 25px;
+}
+
+.fourthCardSubTitle {
+    font-size: 40px;
+}
+
+.fourthCardHr {
+    border: 1px solid;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: #e5e7eb 1px solid;
+}
+
+.fourthCardUse {
+    color: none;
+}
+
+.fourthbuyButton {
+    display: flex;
+    width: 100%;
+    padding: 12px;
+    max-height: 50px;
+    margin-left: 8px;
+    border-radius: 4px;
+    background-color: none;
+    border: #e5e7eb 2px solid;
+    font-size: 16px;
+    font-family: Noto Sans KR;
+    line-height: 25px;
+    color: black;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.fourthCardUseList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}

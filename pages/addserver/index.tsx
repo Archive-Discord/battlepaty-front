@@ -9,6 +9,7 @@ import { loadBrandPay } from '@tosspayments/brandpay-sdk';
 import { useRouter } from 'next/router'
 import { DiscordUserGuild } from '@types'
 import ServerCard from '@components/GuildCard'
+import Toast from '@components/Toast'
 
 interface ServerListProps {
     serverList: DiscordUserGuild[]
@@ -16,15 +17,21 @@ interface ServerListProps {
 
 const ServerList: NextPage<ServerListProps> = ({serverList}) => {
     const [refreshTime, setRefreshTime] = useState<Date>(new Date());
-  const router = useRouter()
+    const router = useRouter()
 
-  const refreshServerSide = () => {
-      console.log(Number(new Date()) - Number(refreshTime))
-  }
+    const refreshServerSide = () => {
+        const time = Number(new Date().getSeconds()) - Number(refreshTime.getSeconds())
+        if(time > 10) {
+            setRefreshTime(new Date())
+            router.replace(router.asPath)
+        } else {
+            Toast(`${10 - time}초후 다시 시도해주세요`, 'error');
+        }
+    }
 
   return (
     <>
-      <h1 className='text-2xl font-bold'>신청가능한 서버목록<button className='border rounded-md ml-2 text-xl px-2' onClick={() => (refreshServerSide())}>새로고침</button></h1>      
+      <h1 className='text-2xl font-bold flex items-center flex-wrap'>신청가능한 서버목록</h1>      
       <div className='flex mt-16 flex-wrap'>
         {serverList ? (<>
                 {serverList.length === 0 ? (<>

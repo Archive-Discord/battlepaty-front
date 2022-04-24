@@ -9,6 +9,7 @@ interface PayItemTypes {
 const PayItems: React.FC<PayItemTypes> = ({method}) => {
   return (
     <>
+    {method.accounts.length === 0 && method.cards.length === 0 && "등록된 결제수단이 없습니다."}
       {method.accounts.map((account, index) => (
           <>
             <AccountMethodPayItem method={account} key={index}/>

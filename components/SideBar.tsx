@@ -72,7 +72,7 @@ const SideBar: NextPage<SidebarProps> = ({ user, path }) => {
               </li>
               <li>
                 <Link href={`/payout`}>
-                  <a className={`relative flex flex-row items-center h-11 focus:outline-none hover:bg-stone-100 text-white-600 hover:text-white-800 border-l-4 ${path === '/admin' ? 'border-sky-500' : 'border-transparent'} hover:border-sky-500 pr-6`}>
+                  <a className={`relative flex flex-row items-center h-11 focus:outline-none hover:bg-stone-100 text-white-600 hover:text-white-800 border-l-4 ${path.startsWith("/payout") ? 'border-sky-500' : 'border-transparent'} hover:border-sky-500 pr-6`}>
                     <span className="inline-flex justify-center items-center ml-4">
                       <i className="fas fa-hammer"/>
                     </span>
@@ -84,7 +84,7 @@ const SideBar: NextPage<SidebarProps> = ({ user, path }) => {
               </li>
               <li>
                 <Link href={`/addserver`}>
-                  <a className={`relative flex flex-row items-center h-11 focus:outline-none hover:bg-stone-100 text-white-600 hover:text-white-800 border-l-4 ${path === '/admin' ? 'border-sky-500' : 'border-transparent'} hover:border-sky-500 pr-6`}>
+                  <a className={`relative flex flex-row items-center h-11 focus:outline-none hover:bg-stone-100 text-white-600 hover:text-white-800 border-l-4 ${path.startsWith("/addserver") ? 'border-sky-500' : 'border-transparent'} hover:border-sky-500 pr-6`}>
                     <span className="inline-flex justify-center items-center ml-4">
                       <i className="fas fa-plus"/>
                     </span>

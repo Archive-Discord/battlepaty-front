@@ -1,8 +1,10 @@
 import '../styles/globals.css'
 import App, { AppProps, AppContext } from 'next/app'
+import 'react-toastify/dist/ReactToastify.css'
 import config from '../config'
 import Layout from '@components/Layouts'
 import Login from '@components/Login'
+import { ToastContainer } from 'react-toastify'
 
 function MyApp({ Component, pageProps }: AppProps) {
   if(!pageProps.user) {
@@ -11,6 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Layout user={pageProps.user} path={pageProps.path}>
       <Component {...pageProps} />
+      <ToastContainer/>
     </Layout>
   )
 }

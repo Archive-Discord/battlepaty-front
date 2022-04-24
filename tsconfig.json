@@ -10,7 +10,10 @@
       ],
       "@types": [
         "types/index.d.ts"
-      ]
+      ],
+      "@styles/*": [
+        "styles/*"
+      ],
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
