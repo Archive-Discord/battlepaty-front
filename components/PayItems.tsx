@@ -7,6 +7,12 @@ interface PayItemTypes {
     method: Methods;
 }
 const PayItems: React.FC<PayItemTypes> = ({method}) => {
+  if(!method) return (
+    <>
+      등록된 결제수단이 없습니다.
+    </>
+  )
+  
   return (
     <>
     {method.accounts.length === 0 && method.cards.length === 0 && "등록된 결제수단이 없습니다."}

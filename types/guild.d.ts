@@ -34,5 +34,5 @@ export interface DiscordUserGuild {
   export interface PaymentsGuildSetting {
     
     server: PaymentsGuild
-    account: account
+    payoutAccount: account
   }

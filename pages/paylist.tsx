@@ -16,9 +16,12 @@ interface PaylistProps {
 
 const Paylist: NextPage<PaylistProps> = ({cardlist, user}) => {
   useEffect(() => {
-    if(cardlist.accounts.length === 0 && cardlist.accounts.length === 0) {
+    if(!cardlist || cardlist.accounts.length === 0 && cardlist.accounts.length === 0) {
       haldleAddPayments()
     }
+    setInterval(() => {
+      refreshServerSide()
+    }, 5000)
   }, [])
   const router = useRouter()
 
@@ -42,6 +45,22 @@ const Paylist: NextPage<PaylistProps> = ({cardlist, user}) => {
     })
   }
 
+  const editPayments = async() => {
+    const barndpay = await loadBrandPay(config.PAYMENTS_CLIENTL_KEY, user.id, {
+      redirectUrl: config.PAYMENTS_BASE_API_URL + '/auth',
+      ui: {
+        highlightColor: "#7C3AED",
+        buttonStyle: 'full',
+        labels: {
+          oneTouchPay: '배틀페이'
+        }
+      }
+    })
+    barndpay.openSettings().then((data) => {
+      refreshServerSide()
+    })
+  }
+
   return (
     <>
       <h1 className='text-2xl font-bold'>등록된 결제수단</h1>
@@ -50,6 +69,9 @@ const Paylist: NextPage<PaylistProps> = ({cardlist, user}) => {
       </div>
       <button className='border px-2 py-1 rounded-md min-w-[15vw] mt-2 hover:bg-gray-200' onClick={() => (haldleAddPayments())} >
         결제수단 추가
+      </button>
+      <button className='border px-2 py-1 rounded-md min-w-[15vw] mt-2 hover:bg-gray-200 ml-3' onClick={() => (editPayments())} >
+        결제수단 관리
       </button>
     </>
   )
@@ -68,6 +90,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             Cookie: `auth=${context.req.cookies.auth}`,
           }
       })
+  if(!cardlist.ok && auth.ok) {
+    return {
+      props: {
+          cardlist: null,
+          user: (await auth.json()).data,
+      }
+    }
+  }
   if(cardlist.ok && auth.ok) {
     return {
       props: {

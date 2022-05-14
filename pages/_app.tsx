@@ -7,9 +7,9 @@ import Login from '@components/Login'
 import { ToastContainer } from 'react-toastify'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  if(!pageProps.user) {
-    return <Login/>
-  }
+  //if(!pageProps.user) {
+  //  return <Login/>
+  //}
   return (
     <Layout user={pageProps.user} path={pageProps.path}>
       <Component {...pageProps} />

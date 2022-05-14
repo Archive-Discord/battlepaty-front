@@ -11,6 +11,7 @@ import { DiscordUserGuild, PaymentsGuild, PaymentsGuildSetting } from '@types'
 import ServerCard from '@components/GuildCard'
 import Toast from '@components/Toast'
 import Link from 'next/link'
+import PayoutSheet from '@components/PayoutSheet'
 import DropDownSelect from '@components/SelectBox'
 
 interface payoutListProps {
@@ -187,31 +188,57 @@ const PayoutList: NextPage<payoutListProps> = ({server}) => {
     }
   return (
     <>
-      <h1 className='text-2xl font-bold'>서버지급 설정</h1>
-      <div className='w-full border border-md p-4 rounded-xl mt-5'>
-        <div className='flex justify-between items-center w-full flex-row lg:flex-nowrap flex-wrap'>
-            <div className='flex flex-col'>
-                <span className='text-xl font-bold text-sky-500'>계좌번호</span>
-                <span className='text-sm font-bold'>지급 받으실 계좌번호를 숫자만 입력해주세요.</span>
+    {server.payoutAccount ? (<>
+        <h1 className='text-2xl font-bold'>서버지급 정보</h1>
+        <div className='w-full border border-md p-4 rounded-xl mt-5'>
+            <div className='flex justify-between items-center w-full flex-row lg:flex-nowrap flex-wrap'>
+                <div className='flex flex-col'>
+                    <span className='text-xl font-bold text-sky-500'>계좌번호</span>
+                    <span className='text-sm font-bold'>지급 받으실 계좌번호</span>
+                </div>
+                <span className='flex pl-3 mt-2 lg:mt-0 w-full items-center h-10 border rounded-md cursor-default focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500 lg:max-w-[50vw]'>
+                    {server.payoutAccount.account.accountNumber}
+                </span>
             </div>
-            <input onChange={(e) => (setAccount(e.target.value))} value={account} className='mt-2 lg:mt-0 w-full p-4 h-10 border rounded-md cursor-default focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500 lg:max-w-[50vw]' placeholder='계좌번호'/>
-        </div>
-        <div className='flex justify-between items-center w-full flex-row lg:flex-nowrap flex-wrap mt-5'>
-            <div className='flex flex-col'>
-                <span className='text-xl font-bold text-sky-500'>예금주</span>
-                <span className='text-sm font-bold'>지급 받으실 계좌의 예금주 이름을 입력해주세요.</span>
+            <div className='flex justify-between items-center w-full flex-row lg:flex-nowrap flex-wrap mt-5'>
+                <div className='flex flex-col'>
+                    <span className='text-xl font-bold text-sky-500'>은행</span>
+                    <span className='text-sm font-bold'>지급 받으실 은행</span>
+                </div>
+                <span className='flex pl-3 mt-2 lg:mt-0 w-full items-center h-10 border rounded-md cursor-default focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500 lg:max-w-[50vw]'>
+                    {server.payoutAccount.account.bank}
+                </span>
             </div>
-            <input onChange={(e) => (setName(e.target.value))} value={name} className='mt-2 lg:mt-0 w-full p-4 h-10 border rounded-md cursor-default focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500 lg:max-w-[50vw]' placeholder='예금주'/>
         </div>
-        <div className='flex justify-between items-center w-full flex-row lg:flex-nowrap flex-wrap mt-5'>
-            <div className='flex flex-col'>
-                <span className='text-xl font-bold text-sky-500'>은행</span>
-                <span className='text-sm font-bold'>지급 받으실 은행을 선택해주세요</span>
-            </div>
-            <DropDownSelect className="lg:max-w-[50vw]" items={BankList} selectCallBack={bankHanlder}/>
-        </div>
-        </div>
-      <button onClick={() => (submitHandler())} className='border w-full py-2 mt-12 rounded-md hover:bg-gray-100'>신청하기</button>
+        <h1 className='text-2xl font-bold my-4'>서버지급 기록</h1>
+        <PayoutSheet server={server}/>
+    </>): (<>
+        <h1 className='text-2xl font-bold'>서버지급 설정</h1>
+            <div className='w-full border border-md p-4 rounded-xl mt-5'>
+                <div className='flex justify-between items-center w-full flex-row lg:flex-nowrap flex-wrap'>
+                    <div className='flex flex-col'>
+                        <span className='text-xl font-bold text-sky-500'>계좌번호</span>
+                        <span className='text-sm font-bold'>지급 받으실 계좌번호를 숫자만 입력해주세요.</span>
+                    </div>
+                    <input onChange={(e) => (setAccount(e.target.value))} value={account} className='mt-2 lg:mt-0 w-full p-4 h-10 border rounded-md cursor-default focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500 lg:max-w-[50vw]' placeholder='계좌번호'/>
+                </div>
+                <div className='flex justify-between items-center w-full flex-row lg:flex-nowrap flex-wrap mt-5'>
+                    <div className='flex flex-col'>
+                        <span className='text-xl font-bold text-sky-500'>예금주</span>
+                        <span className='text-sm font-bold'>지급 받으실 계좌의 예금주 이름을 입력해주세요.</span>
+                    </div>
+                    <input onChange={(e) => (setName(e.target.value))} value={name} className='mt-2 lg:mt-0 w-full p-4 h-10 border rounded-md cursor-default focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500 lg:max-w-[50vw]' placeholder='예금주'/>
+                </div>
+                <div className='flex justify-between items-center w-full flex-row lg:flex-nowrap flex-wrap mt-5'>
+                    <div className='flex flex-col'>
+                        <span className='text-xl font-bold text-sky-500'>은행</span>
+                        <span className='text-sm font-bold'>지급 받으실 은행을 선택해주세요</span>
+                    </div>
+                    <DropDownSelect className="lg:max-w-[50vw]" items={BankList} selectCallBack={bankHanlder}/>
+                </div>
+                </div>
+            <button onClick={() => (submitHandler())} className='border w-full py-2 mt-12 rounded-md hover:bg-gray-100'>신청하기</button>
+    </>)}
     </>
   )
 }
